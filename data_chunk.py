@@ -1,3 +1,4 @@
+from langchain_community.chat_models import ChatOllama
 from langchain.output_parsers.openai_tools import JsonOutputToolsParser
 from langchain_community.chat_models import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
@@ -27,7 +28,8 @@ def get_propositions(text, runnable, extraction_chain):
 def run_chunk(essay):
 
     obj = hub.pull("wfh/proposal-indexing")
-    llm = ChatOpenAI(model='gpt-4-1106-preview', openai_api_key = os.getenv("OPENAI_API_KEY"))
+    # Après — utilise Ollama via LangChain
+    llm = ChatOllama(model="llama3", base_url="http://localhost:11434")
 
     runnable = obj | llm
 

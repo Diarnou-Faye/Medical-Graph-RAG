@@ -20,9 +20,10 @@ openai_api_key = os.getenv("OPENAI_API_KEY")
 
 def get_embedding(text, mod = "text-embedding-3-small"):
     client = OpenAI(
-        api_key=os.getenv("OPENAI_API_KEY"),
-        base_url=os.getenv("OPENAI_API_BASE_URL")
+        base_url="http://localhost:11434/v1",
+        api_key="ollama",
     )
+    MODEL_NAME = "llama3"  
 
     response = client.embeddings.create(
         input=text,
